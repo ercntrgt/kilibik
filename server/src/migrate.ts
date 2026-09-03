@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import pg from 'pg';
+import type pg from 'pg';
 
 const dir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'migrations');
 
@@ -28,17 +28,4 @@ export async function migrate(pool: pg.Pool): Promise<string[]> {
     }
   }
   return applied;
-}
-
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
-  migrate(pool)
-    .then((a) => {
-      console.log(a.length ? `applied: ${a.join(', ')}` : 'up to date');
-      return pool.end();
-    })
-    .catch((e) => {
-      console.error(e);
-      process.exit(1);
-    });
 }

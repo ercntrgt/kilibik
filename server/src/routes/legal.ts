@@ -1,10 +1,23 @@
+import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { FastifyInstance } from 'fastify';
 import { LOCATION_CONSENT_VERSION, PRIVACY_NOTICE_VERSION } from '../../../shared/src/index.js';
 
-const docsDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'docs', 'compliance');
+/** docs/compliance dizini: DOCS_DIR, kaynak ağacı (tsx) veya dist paketi (esbuild) — hangisi varsa. */
+function resolveDocsDir(): string {
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    process.env.DOCS_DIR,
+    path.join(here, '..', '..', '..', 'docs', 'compliance'), // server/src/routes → repo kökü
+    path.join(here, '..', '..', 'docs', 'compliance'), // server/dist → repo kökü
+    path.resolve(process.cwd(), 'docs', 'compliance'),
+    path.resolve(process.cwd(), '..', 'docs', 'compliance'),
+  ].filter((p): p is string => !!p);
+  return candidates.find((p) => existsSync(p)) ?? candidates[1];
+}
+const docsDir = resolveDocsDir();
 
 const DOCS: Record<string, { file: string; version: number }> = {
   'privacy-notice': { file: 'aydinlatma-metni.md', version: PRIVACY_NOTICE_VERSION },
