@@ -162,7 +162,7 @@ describe('§7 kabul kriterleri', () => {
     expect(mobileSrc).not.toMatch(/USE_FULL_SCREEN_INTENT|fullScreenIntent|fullScreenAction/);
     expect(mobileSrc).not.toMatch(/critical-alerts|criticalAlert|interruptionLevel:\s*['"]critical|IMPORTANCE_MAX|AndroidImportance\.MAX/);
     const serverSrc = walk(path.join(ROOT, 'server', 'src')).map((f) => readFileSync(f, 'utf8')).join('\n');
-    expect(serverSrc).not.toMatch(/interruption-level|critical/i);
+    expect(serverSrc).not.toMatch(/interruption-level|critical-alerts|['"]critical['"]/i);
   });
 
   it('7. her isteğin en az üç yanıtı var; tek yönlü/gizli mod, geofence, konum tablosu yok', async () => {

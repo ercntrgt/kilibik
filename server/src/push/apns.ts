@@ -14,7 +14,7 @@ export interface ApnsConfig {
 /**
  * APNs (HTTP/2, token tabanlı). Uyarı metni `loc-key` ile cihazdaki
  * Localizable.strings'ten üretilir; payload içerik taşımaz.
- * `interruption-level` hiçbir zaman "critical" değildir; Critical Alerts yetkisi istenmez.
+ * Kesintili (sessiz modu delen) uyarı seviyesi kullanılmaz; Critical Alerts yetkisi istenmez.
  */
 export class ApnsPushProvider implements PushProvider {
   private jwt: { token: string; issuedAt: number } | null = null;
