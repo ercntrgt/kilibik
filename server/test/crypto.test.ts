@@ -8,6 +8,8 @@ import {
   openJson,
   sealJson,
   toBase64,
+  utf8Decode,
+  utf8Encode,
 } from '../../shared/src/index.js';
 import { sodium } from './helpers.js';
 
@@ -37,6 +39,13 @@ describe('shared crypto', () => {
     expect(() => openJson(s, k, tampered, AAD_LOCATION)).toThrow();
     // Şifreli zarf koordinatı içermez
     expect(Buffer.from(env).toString('latin1')).not.toContain('41.0082');
+  });
+
+  it('utf-8 helpers match TextEncoder/TextDecoder', () => {
+    for (const str of ['dönerken ekmek al', 'İstanbul ğüşöçı', '🙂👍🏽', 'plain', '']) {
+      expect(Buffer.from(utf8Encode(str))).toEqual(Buffer.from(new TextEncoder().encode(str)));
+      expect(utf8Decode(utf8Encode(str))).toBe(str);
+    }
   });
 
   it('base64 helpers round-trip arbitrary bytes', async () => {

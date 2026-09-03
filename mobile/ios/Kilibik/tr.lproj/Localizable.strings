@@ -1,0 +1,5 @@
+/* Push bildirim metinleri cihazda üretilir; payload yalnızca loc-key taşır. */
+"PUSH_NUDGE" = "Beni ara";
+"PUSH_REQUEST" = "Yeni istek";
+"PUSH_REQUEST_RESPONSE" = "İsteğine yanıt geldi";
+"PUSH_PAIR" = "Eşleştiniz";

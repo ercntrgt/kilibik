@@ -42,6 +42,9 @@ describe('nudge + push (Faz 3)', () => {
       const fcm = FcmPushProvider.messageFor('t', kind);
       expect(fcm.message.data).toEqual({ kind });
       expect(fcm.message).not.toHaveProperty('notification');
+      const fs = JSON.stringify(fcm.message);
+      expect(fs).not.toMatch(/critical|interruption-level|lat|lng|body"/);
+      expect(fcm.message.apns.headers['apns-push-type']).toBe(apns.pushType);
     }
     expect(ApnsPushProvider.payloadFor('location').pushType).toBe('background');
     expect(ApnsPushProvider.payloadFor('nudge').pushType).toBe('alert');

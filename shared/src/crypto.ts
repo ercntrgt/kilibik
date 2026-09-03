@@ -40,8 +40,54 @@ export const KEY_BYTES = 32;
 export const AAD_LOCATION = 'kilibik:location:v1';
 export const AAD_REQUEST = 'kilibik:request:v1';
 
-const enc = new TextEncoder();
-const dec = new TextDecoder();
+// UTF-8 kodlama: TextEncoder/TextDecoder her RN/Hermes sürümünde yok; saf JS.
+export function utf8Encode(str: string): Uint8Array {
+  const out: number[] = [];
+  for (let i = 0; i < str.length; i++) {
+    let c = str.charCodeAt(i);
+    if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
+      const d = str.charCodeAt(i + 1);
+      if (d >= 0xdc00 && d <= 0xdfff) {
+        c = 0x10000 + ((c - 0xd800) << 10) + (d - 0xdc00);
+        i++;
+      }
+    }
+    if (c < 0x80) out.push(c);
+    else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+    else if (c < 0x10000) out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    else out.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 63), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+  }
+  return Uint8Array.from(out);
+}
+
+export function utf8Decode(bytes: Uint8Array): string {
+  let s = '';
+  for (let i = 0; i < bytes.length; ) {
+    const b = bytes[i];
+    let cp: number;
+    let n: number;
+    if (b < 0x80) [cp, n] = [b, 1];
+    else if ((b & 0xe0) === 0xc0) [cp, n] = [b & 0x1f, 2];
+    else if ((b & 0xf0) === 0xe0) [cp, n] = [b & 0x0f, 3];
+    else if ((b & 0xf8) === 0xf0) [cp, n] = [b & 0x07, 4];
+    else throw new Error('invalid utf-8');
+    if (i + n > bytes.length) throw new Error('invalid utf-8');
+    for (let k = 1; k < n; k++) {
+      const c = bytes[i + k];
+      if ((c & 0xc0) !== 0x80) throw new Error('invalid utf-8');
+      cp = (cp << 6) | (c & 0x3f);
+    }
+    i += n;
+    if (cp > 0xffff) {
+      cp -= 0x10000;
+      s += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 0x3ff));
+    } else s += String.fromCharCode(cp);
+  }
+  return s;
+}
+
+const enc = { encode: utf8Encode };
+const dec = { decode: utf8Decode };
 
 export interface KeyPair {
   publicKey: Uint8Array;

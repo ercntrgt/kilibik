@@ -1,6 +1,6 @@
 import { SignJWT, importPKCS8 } from 'jose';
 import type { PushKind } from '../../../shared/src/index.js';
-import type { PushProvider, PushTarget } from './types.js';
+import { SILENT_KINDS, type PushProvider, type PushTarget } from './types.js';
 
 export interface FcmConfig {
   projectId: string;
@@ -9,8 +9,10 @@ export interface FcmConfig {
 }
 
 /**
- * FCM HTTP v1. Yalnızca data mesajı gönderilir ({kind}); bildirimi uygulama
- * cihazda üretir. USE_FULL_SCREEN_INTENT kullanılmaz; kanal önemi standarttır.
+ * FCM HTTP v1. Her iki platforma da gönderebilir (iOS'ta APNs üzerinden yönlendirilir).
+ * Yalnızca data mesajı ({kind}); Android'de bildirimi uygulama cihazda üretir,
+ * iOS'ta uyarı metni `loc-key` ile cihazdaki yerelleştirme dosyasından gelir.
+ * USE_FULL_SCREEN_INTENT kullanılmaz; kanal önemi standarttır; critical alert yok.
  */
 export class FcmPushProvider implements PushProvider {
   private access: { token: string; exp: number } | null = null;
@@ -39,17 +41,25 @@ export class FcmPushProvider implements PushProvider {
   }
 
   static messageFor(token: string, kind: PushKind) {
+    const silent = SILENT_KINDS.has(kind);
     return {
       message: {
         token,
         data: { kind },
         android: { priority: 'high', ttl: '300s' },
+        apns: {
+          headers: { 'apns-push-type': silent ? 'background' : 'alert', 'apns-priority': silent ? '5' : '10' },
+          payload: {
+            aps: silent
+              ? { 'content-available': 1 }
+              : { alert: { 'loc-key': `PUSH_${kind.toUpperCase()}` }, sound: 'default', 'mutable-content': 1 },
+          },
+        },
       },
     };
   }
 
   async send(target: PushTarget, kind: PushKind): Promise<void> {
-    if (target.platform !== 'android') return;
     const token = await this.accessToken();
     const res = await this.fetchImpl(`https://fcm.googleapis.com/v1/projects/${this.cfg.projectId}/messages:send`, {
       method: 'POST',

@@ -8,10 +8,11 @@ import type { PushProvider, PushTarget } from './types.js';
 
 export type { PushProvider, PushTarget } from './types.js';
 
-class MultiProvider implements PushProvider {
-  constructor(private providers: PushProvider[]) {}
+/** 'both': iOS → doğrudan APNs, Android → FCM. */
+class PlatformRouter implements PushProvider {
+  constructor(private ios: PushProvider, private android: PushProvider) {}
   async send(target: PushTarget, kind: PushKind) {
-    await Promise.all(this.providers.map((p) => p.send(target, kind)));
+    await (target.platform === 'ios' ? this.ios : this.android).send(target, kind);
   }
 }
 
@@ -22,7 +23,7 @@ export function createPushProvider(cfg: Config, log: (m: string) => void = conso
     case 'fcm':
       return new FcmPushProvider(cfg.fcm);
     case 'both':
-      return new MultiProvider([new ApnsPushProvider(cfg.apns), new FcmPushProvider(cfg.fcm)]);
+      return new PlatformRouter(new ApnsPushProvider(cfg.apns), new FcmPushProvider(cfg.fcm));
     default:
       return new LogPushProvider(log);
   }

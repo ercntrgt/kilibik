@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { Device, pairedDevices, setupEnv, type TestEnv } from './helpers.js';
+import { Device, pairedDevices, setupEnv, type ApiResult, type TestEnv } from './helpers.js';
 
 let env: TestEnv;
 beforeAll(async () => (env = await setupEnv()));
@@ -59,7 +59,7 @@ describe('encrypted request flow (Faz 1)', () => {
   it('limits sending to 10 per hour', async () => {
     const [a] = await pairedDevices(env);
     for (let i = 0; i < 10; i++) expect((await a.sendRequest(`n${i}`)).status).toBe(201);
-    const r = await a.sendRequest('n11');
+    const r = (await a.sendRequest('n11')) as ApiResult<any>;
     expect(r.status).toBe(429);
     expect(r.json.error).toBe('request_rate_limited');
     expect(r.json.retry_after).toBeGreaterThan(0);

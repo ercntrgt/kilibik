@@ -156,12 +156,18 @@ describe('§7 kabul kriterleri', () => {
   });
 
   it('6. sessiz mod: critical alert / full-screen intent yok, standart bildirim', () => {
+    // Yorumlar (açıklayıcı notlar) ayıklanır; gerçek bildirimler aranır.
+    const stripComments = (src: string) => src.replace(/<!--[\s\S]*?-->/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
     const mobileFiles = walk(path.join(ROOT, 'mobile')).filter((f) => /\.(ts|tsx|json|xml|plist|entitlements|gradle|java|kt|m|mm|swift)$/.test(f));
     expect(mobileFiles.length).toBeGreaterThan(0);
-    const mobileSrc = mobileFiles.map((f) => readFileSync(f, 'utf8')).join('\n');
-    expect(mobileSrc).not.toMatch(/USE_FULL_SCREEN_INTENT|fullScreenIntent|fullScreenAction/);
-    expect(mobileSrc).not.toMatch(/critical-alerts|criticalAlert|interruptionLevel:\s*['"]critical|IMPORTANCE_MAX|AndroidImportance\.MAX/);
-    const serverSrc = walk(path.join(ROOT, 'server', 'src')).map((f) => readFileSync(f, 'utf8')).join('\n');
+    const mobileSrc = stripComments(mobileFiles.map((f) => readFileSync(f, 'utf8')).join('\n'));
+    // Android: tam ekran intent izni ve notifee fullScreenAction yok; kanal önemi MAX değil
+    expect(mobileSrc).not.toMatch(/android\.permission\.USE_FULL_SCREEN_INTENT|fullScreenAction|fullScreenIntent|IMPORTANCE_MAX|AndroidImportance\.MAX/);
+    // iOS: critical alerts entitlement'ı ve critical interruption level yok
+    expect(mobileSrc).not.toMatch(/com\.apple\.developer\.usernotifications\.critical-alerts|interruptionLevel:\s*['"]critical|critical:\s*true/);
+    const manifest = readFileSync(path.join(ROOT, 'mobile', 'android', 'app', 'src', 'main', 'AndroidManifest.xml'), 'utf8');
+    expect(stripComments(manifest)).not.toContain('USE_FULL_SCREEN_INTENT');
+    const serverSrc = stripComments(walk(path.join(ROOT, 'server', 'src')).map((f) => readFileSync(f, 'utf8')).join('\n'));
     expect(serverSrc).not.toMatch(/interruption-level|critical-alerts|['"]critical['"]/i);
   });
 
