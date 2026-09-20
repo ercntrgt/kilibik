@@ -19,7 +19,7 @@ export function getWhatsAppConfig(): WhatsAppConfig {
   const token = process.env.META_WHATSAPP_TOKEN;
   const phoneNumberId = process.env.META_PHONE_NUMBER_ID;
   const wabaId = process.env.META_WABA_ID ?? '';
-  const apiVersion = process.env.META_GRAPH_API_VERSION || 'v23.0';
+  const apiVersion = process.env.META_GRAPH_API_VERSION || 'v25.0';
 
   const missing: string[] = [];
   if (!token) missing.push('META_WHATSAPP_TOKEN');

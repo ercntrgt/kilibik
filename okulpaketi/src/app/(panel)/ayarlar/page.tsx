@@ -28,7 +28,7 @@ export default async function SettingsPage() {
   const env = {
     phoneNumberId: process.env.META_PHONE_NUMBER_ID,
     wabaId: process.env.META_WABA_ID,
-    apiVersion: process.env.META_GRAPH_API_VERSION || 'v23.0',
+    apiVersion: process.env.META_GRAPH_API_VERSION || 'v25.0',
     tokenSet: Boolean(process.env.META_WHATSAPP_TOKEN),
     verifyTokenSet: Boolean(process.env.META_WEBHOOK_VERIFY_TOKEN),
     appSecretSet: Boolean(process.env.META_APP_SECRET),
