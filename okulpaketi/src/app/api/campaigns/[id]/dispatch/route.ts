@@ -5,7 +5,7 @@ import { handleApiError, jsonError, jsonOk } from '@/lib/api';
 import { dispatchCampaignBatch } from '@/lib/dispatch';
 
 export const runtime = 'nodejs';
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 /**
  * "WhatsApp Mesajlarını Gönder": bir grup mesaj gonderir.

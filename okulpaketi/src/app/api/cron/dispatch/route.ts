@@ -5,7 +5,7 @@ import { handleApiError, jsonOk } from '@/lib/api';
 import { dispatchCampaignBatch } from '@/lib/dispatch';
 
 export const runtime = 'nodejs';
-export const maxDuration = 300;
+export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 function authorized(request: NextRequest): boolean {

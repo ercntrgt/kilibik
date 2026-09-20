@@ -236,7 +236,12 @@ npm run dev                    # http://localhost:3000
 ### Vercel
 
 - Ortam değişkenlerini (bkz. `.env.example`) Production + Preview için tanımlayın.
-- `vercel.json` içindeki cron, yarım kalan gönderimleri 5 dakikada bir toparlar; `CRON_SECRET` zorunludur.
+- `vercel.json` içindeki cron, yarım kalan gönderimleri toparlar; `CRON_SECRET` zorunludur.
+  Varsayılan olarak günde bir kez çalışır (Hobby planının sınırı). Pro planda sıklığı
+  artırabilirsiniz (örn. `*/5 * * * *`). Asıl gönderimi tarayıcı sürdüğü için cron yalnızca
+  emniyet ağıdır.
+- API uçlarının `maxDuration` değeri 60 sn'dir (Hobby sınırı). Gönderim turlara bölündüğü
+  için bu yeterlidir; daha büyük gruplar için Pro'da süre artırılabilir.
 
 ## 8. Her aşamayı nasıl test edersiniz?
 

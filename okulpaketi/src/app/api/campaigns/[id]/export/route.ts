@@ -6,7 +6,7 @@ import { safeFileName, toCsv, toXlsx } from '@/lib/export';
 import { MESSAGE_STATUS_LABELS, RECIPIENT_STATUS_LABELS, formatDateTime } from '@/lib/format';
 
 export const runtime = 'nodejs';
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 const HEADERS = [
   'Satır', 'Telefon', 'Alıcı Tipi', 'Set Adı', 'Teslim Tarihi', 'Teslim Saati', 'Teslim Noktası',
