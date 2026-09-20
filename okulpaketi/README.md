@@ -206,6 +206,8 @@ tarayıcıdaki uyarı onaylanmalıdır.
 
 ## 7. Kurulum
 
+> Adım adım, kontrol noktalı kurulum rehberi: [docs/KURULUM.md](docs/KURULUM.md)
+
 ```bash
 cd okulpaketi
 npm install
