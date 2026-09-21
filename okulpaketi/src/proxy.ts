@@ -6,7 +6,7 @@ import { createServerClient } from '@supabase/ssr';
  * API uclari kendi icinde `requireApiUser()` ile korunur; bu yuzden /api
  * eslesme disinda birakilmistir (webhook ve cron da oyle).
  */
-const PUBLIC_PATHS = ['/gizlilik'];
+const PUBLIC_PATHS = ['/gizlilik', '/kosullar'];
 
 export async function proxy(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
