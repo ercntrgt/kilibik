@@ -16,11 +16,14 @@ Son güncelleme: [GG.AA.YYYY] · Yürürlük tarihi: [GG.AA.YYYY]
 
 | | |
 |---|---|
-| **Unvan** | [Şirketin tam yasal unvanı, ör. Atlas ELT Yayıncılık Ltd. Şti.] |
+| **Unvan** | ATLASELT EĞİTİM DANIŞMANLIK LİMİTED ŞİRKETİ |
 | **Adres** | [Şirket adresi] |
-| **MERSİS No** | [MERSİS numarası] |
+| **MERSİS No** | 0206 0666 9620 0014 |
+| **Ticaret Sicil No** | 13156 |
+| **Oda Sicil No** | 15458 |
+| **Vergi Dairesi / No** | Kaymakkapı V.D. – 206 066 6962 |
 | **E-posta** | [kvkk@atlaselt.com] |
-| **Telefon** | [+90 ...] |
+| **Telefon** | 0532 562 24 13 |
 | **KEP adresi** | [varsa KEP adresi] |
 
 ## 2. Hangi kişisel verileri işliyoruz?

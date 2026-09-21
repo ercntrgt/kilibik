@@ -6,6 +6,8 @@ import { createServerClient } from '@supabase/ssr';
  * API uclari kendi icinde `requireApiUser()` ile korunur; bu yuzden /api
  * eslesme disinda birakilmistir (webhook ve cron da oyle).
  */
+const PUBLIC_PATHS = ['/gizlilik'];
+
 export async function proxy(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -24,8 +26,11 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const { data } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
+  // Herkese acik sayfalar (Meta uygulama incelemesi gizlilik politikasi URL'i ister)
+  if (PUBLIC_PATHS.includes(path)) return response;
+
+  const { data } = await supabase.auth.getUser();
   const isLoginPage = path === '/giris';
 
   if (!data.user && !isLoginPage) {
