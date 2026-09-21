@@ -165,6 +165,18 @@ Yayınlamak için gizlilik politikası URL'i, uygulama simgesi ve kategori isten
 6. Telefonda mesajı okuyun, detay sayfasını yenileyin:
    `Gönderildi → Teslim edildi → Okundu` ilerlemeli
 
+### Durum takibinde bilinmesi gerekenler
+
+- **Uygulama yayınlanmadan** (`Unpublished`) Meta gerçek webhook olaylarını iletmez;
+  mesaj gider ama durum "Gönderildi"de kalır. Yayınlamak için gizlilik politikası URL'i,
+  kullanım koşulları URL'i, uygulama simgesi ve kategori gerekir — bu proje bunları
+  `/gizlilik` ve `/kosullar` sayfalarıyla kendi içinde sunar.
+- **Alıcının "okundu bilgisi" kapalıysa** Meta `read` olayını hiç göndermez; panelde
+  "Okundu" sayacı 0 kalır. Bu bir hata değildir. Raporlamada güvenilir gösterge
+  **"Teslim edildi"**, takip edilmesi gereken ise **"Başarısız"**tır.
+- Bir gönderimin durumları **geriye dönük gelmez**: olay Meta tarafından gönderildiği anda
+  ulaşamazsa tekrar denenmez.
+
 ## 9. Kendi numaranıza geçiş
 
 Test numarasından kurumsal numaraya geçerken **yalnızca `META_PHONE_NUMBER_ID`**
