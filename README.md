@@ -13,6 +13,7 @@
 | `mobile/` | React Native (bare) uygulama: onboarding, istekler, harita, dürtme, ayarlar |
 | `docs/` | Mimari, kırmızı çizgiler, test rehberi, faz durumu |
 | `docs/compliance/` | Aydınlatma metni, açık rıza, gizlilik politikası, saklama tablosu, veri işleyen sözleşmesi, store metni, Play Data Safety, Apple App Privacy |
+| `okulpaketi/` | **Ayrı ürün:** AtlasELT – OkulPaketi WhatsApp toplu teslimat bilgilendirme paneli (Next.js + Supabase + Meta WhatsApp Cloud API). Kendi bağımlılıkları ve testleri vardır; bkz. [okulpaketi/README.md](okulpaketi/README.md) |
 
 ## Hızlı başlangıç
 
