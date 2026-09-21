@@ -48,13 +48,12 @@ export default function PrivacyPage() {
         <table className="w-full text-sm">
           <tbody>
             <Row label="Unvan" value="ATLASELT EĞİTİM DANIŞMANLIK LİMİTED ŞİRKETİ" />
-            <Row label="Adres" value="[ŞİRKET ADRESİ — doldurulacak]" />
+            <Row label="Adres" value="Çünür Mah. 102 Cad. Teknokent No: 287 G, İç Kapı No: 101/A1, Merkez / ISPARTA" />
             <Row label="MERSİS No" value="0206 0666 9620 0014" />
             <Row label="Ticaret Sicil No" value="13156" />
             <Row label="Oda Sicil No" value="15458" />
-            <Row label="Vergi Dairesi / No" value="Kaymakkapı V.D. – 206 066 6962" />
             <Row label="Telefon" value="0532 562 24 13" />
-            <Row label="E-posta" value="ercan@atlaselt.com" />
+            <Row label="E-posta" value="info@atlaselt.com" />
           </tbody>
         </table>
       </Section>
@@ -127,7 +126,7 @@ export default function PrivacyPage() {
       <Section title="6. Saklama süresi">
         <p>
           Telefon numarası ve teslimat bilgileri ile gönderim durum kayıtları, teslimat
-          tamamlandıktan sonra <strong>1 yıl</strong> süreyle saklanır. Süre sonunda veriler
+          tamamlandıktan sonra <strong>3 yıl</strong> süreyle saklanır. Süre sonunda veriler
           silinir veya anonim hâle getirilir. Yasal saklama yükümlülüğü bulunan hâllerde ilgili
           mevzuatta öngörülen süre uygulanır.
         </p>
@@ -146,7 +145,7 @@ export default function PrivacyPage() {
           <li>Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
         </ul>
         <p>
-          haklarına sahipsiniz. Taleplerinizi <strong>ercan@atlaselt.com</strong> adresine
+          haklarına sahipsiniz. Taleplerinizi <strong>info@atlaselt.com</strong> adresine
           e-posta ile veya yukarıdaki şirket adresine yazılı olarak iletebilirsiniz.
           Başvurularınız en geç <strong>30 gün</strong> içinde sonuçlandırılır.
         </p>
@@ -156,7 +155,7 @@ export default function PrivacyPage() {
         <p>Teslimat bilgilendirmesi almak istemiyorsanız:</p>
         <ul className="list-disc space-y-1 pl-5">
           <li>Gelen mesaja <strong>“İPTAL”</strong> yazarak yanıt verebilir,</li>
-          <li>ercan@atlaselt.com adresine talebinizi iletebilir,</li>
+          <li>info@atlaselt.com adresine talebinizi iletebilir,</li>
           <li>WhatsApp üzerinden numaramızı engelleyebilirsiniz.</li>
         </ul>
         <p>
@@ -191,7 +190,8 @@ export default function PrivacyPage() {
       </Section>
 
       <footer className="mt-10 border-t border-ink-200 pt-6 text-xs text-ink-500">
-        ATLASELT EĞİTİM DANIŞMANLIK LİMİTED ŞİRKETİ · [ŞİRKET ADRESİ — doldurulacak]
+        ATLASELT EĞİTİM DANIŞMANLIK LİMİTED ŞİRKETİ ·
+        Çünür Mah. 102 Cad. Teknokent No: 287 G, İç Kapı No: 101/A1, Merkez / ISPARTA
       </footer>
     </main>
   );

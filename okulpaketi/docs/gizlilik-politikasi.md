@@ -17,12 +17,11 @@ Son güncelleme: [GG.AA.YYYY] · Yürürlük tarihi: [GG.AA.YYYY]
 | | |
 |---|---|
 | **Unvan** | ATLASELT EĞİTİM DANIŞMANLIK LİMİTED ŞİRKETİ |
-| **Adres** | [Şirket adresi] |
+| **Adres** | Çünür Mah. 102 Cad. Teknokent No: 287 G, İç Kapı No: 101/A1, Merkez / ISPARTA |
 | **MERSİS No** | 0206 0666 9620 0014 |
 | **Ticaret Sicil No** | 13156 |
 | **Oda Sicil No** | 15458 |
-| **Vergi Dairesi / No** | Kaymakkapı V.D. – 206 066 6962 |
-| **E-posta** | [kvkk@atlaselt.com] |
+| **E-posta** | info@atlaselt.com |
 | **Telefon** | 0532 562 24 13 |
 | **KEP adresi** | [varsa KEP adresi] |
 
@@ -89,9 +88,9 @@ paylaşılmaz.**
 
 | Veri | Süre |
 |---|---|
-| Telefon numarası ve teslimat bilgileri | Teslimat tamamlandıktan sonra **[ör. 1 yıl]** |
-| Gönderim durum kayıtları (log) | **[ör. 1 yıl]** |
-| Mükerrer gönderim kontrolü kayıtları | **[ör. 1 yıl]** |
+| Telefon numarası ve teslimat bilgileri | Teslimat tamamlandıktan sonra **3 yıl** |
+| Gönderim durum kayıtları (log) | **3 yıl** |
+| Mükerrer gönderim kontrolü kayıtları | **3 yıl** |
 
 Süre sonunda veriler silinir veya anonim hâle getirilir. Yasal saklama
 yükümlülüğü bulunan hâllerde ilgili mevzuatta öngörülen süre uygulanır.
@@ -115,8 +114,8 @@ Veri sorumlusuna başvurarak;
 
 haklarına sahipsiniz.
 
-**Başvuru yolu:** Taleplerinizi [kvkk@atlaselt.com] adresine e-posta ile veya
-[şirket adresi] adresine yazılı olarak iletebilirsiniz. Başvurularınız en geç
+**Başvuru yolu:** Taleplerinizi info@atlaselt.com adresine e-posta ile veya
+Çünür Mah. 102 Cad. Teknokent No: 287 G, İç Kapı No: 101/A1, Merkez / ISPARTA adresine yazılı olarak iletebilirsiniz. Başvurularınız en geç
 **30 gün** içinde sonuçlandırılır.
 
 ## 8. Mesaj almayı durdurma
@@ -124,7 +123,7 @@ haklarına sahipsiniz.
 Teslimat bilgilendirmesi almak istemiyorsanız:
 
 - Gelen mesaja **"İPTAL"** yazarak yanıt verebilir,
-- [kvkk@atlaselt.com] adresine talebinizi iletebilir,
+- info@atlaselt.com adresine talebinizi iletebilir,
 - WhatsApp üzerinden numaramızı engelleyebilirsiniz.
 
 Bu durumda teslimat bilgilendirmesi tarafınıza gönderilmez; teslimat süreci
